@@ -1,23 +1,26 @@
-## Taller Virtual: Bioinformática en Genómica Viral 
+# de Novo Assembly tutorial
 
-#### Indentificación de Secuencias Virales (Metagenomica Viral y Profagos
+#### Gamaliel López-Leal
 
-*Gamaliel López Leal*
-*gamaliel.lopez@uaem.edu.mx*
+###### Laboratorio de Biología Computacional y Virómica Integrativa
+
+###### Centro de Investigación en Dinámica Celular-UAEM
+
+gamaliel.lopez@docentes.uaem.edu.mx	
 
 
 
-En su directorio `home` encontrarán tres subdirectorios llamados `Reads`, `Genomes` y `Scripts`. 
+Crea en tu directorio `home` tres subdirectorios llamados `Reads`, `Genomes` y `Scripts`. 
 
- `home/Reads`: Contienelas lecturas crudas en formato fastq (archivos .fastq) que se usarán en eltaller para ensamblar genomas virales.
+ `home/Reads`: Contiene las lecturas crudas en formato fastq (archivos .fastq) que se usarán en eltaller para ensamblar genomas virales.
 
- `home/Genomes`: Contienealgunos genomas de fagos y hospederos en formato fasta (archivos .fna) que seusarán en el taller para análisis posteriores.
+ `home/Genomes`: Contiene algunos genomas de fagos y hospederos en formato fasta (archivos .fna).
 
  `/home/Scripts`:Contiene algunos programas caseros escritos en perl (archivos .pl) que nosayudará a manejar los archivos durante el taller.
 
 
 
-En nuestro directorio de Reads, vamos a encontrar las lecturas crudas producto de la secuenciación. Antes de proceder a realizar el ensamblado de los genomas virales, es necesario evaluar la calidad de las lecturas y eliminar las lecturas o nucleótidos de baja calidad. Para esto, usaremos las herramientas de FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) y TrimGalore (https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md).
+En nuestro directorio de Reads, vamos a encontrar las lecturas crudas producto de la secuenciación. Antes de proceder a realizar el ensamblado de los genomas, es necesario evaluar la calidad de las lecturas y eliminar las lecturas o nucleótidos de baja calidad. Para esto, usaremos las herramientas de FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) y TrimGalore (https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md).
 
 Podemos verificar cuantas lecturas (contar cuantas lecturas hay en cada archivo) tenemos por archivo (R1 y R2) usando el comando `grep` con el flag `-c`. Para esto tenemos que buscar un patro único para cada lectura.
 
