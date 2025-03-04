@@ -6,7 +6,7 @@
 
 ###### Centro de Investigación en Dinámica Celular-UAEM
 
-gamaliel.lopez@uaem.edu.mx	
+gamaliel.lopez@docentes.uaem.edu.mx	
 
 
 
