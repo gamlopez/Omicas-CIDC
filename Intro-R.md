@@ -245,6 +245,67 @@ num_vector1
 
 NOTA. Las operaciones aritméticas también pueden aplicarse sobre matrices. [See More](http://www.philender.com/courses/multivariate/notes/matr.html)
 
+Un arreglo es una matriz de varias dimensiones con información numérica, alfanumérica o lógica. Para construir una arreglo se usa la función `array( )`. Por ejemplo, para crear un arreglo de 3×4×2 con las primeras 24 letras minúsculas del alfabeto se escribe el siguiente código.
+
+`miarray <- array(data=letters[1:24], dim=c(3, 4, 2))`
+
+El argumento `data` de la función sirve para indicar los datos que se van a almacenar en el arreglo y el argumento `dim` sirve para indicar las dimensiones del arreglo. Para observar lo que quedó almacenado en el objeto `miarray` se escribe en la consola lo siguiente.
+
+`miarray`
+
+```
+## , , 1
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,] "a"  "d"  "g"  "j" 
+## [2,] "b"  "e"  "h"  "k" 
+## [3,] "c"  "f"  "i"  "l" 
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,] "m"  "p"  "s"  "v" 
+## [2,] "n"  "q"  "t"  "w" 
+## [3,] "o"  "r"  "u"  "x"
+```
+
+### ¿Cómo extraer elementos de un arreglo?
+
+Para recuperar elementos almacenados en un arreglo se usan también corchetes, y dentro de los corchetes, las coordenadas del objeto de interés.
+
+### Ejemplo
+
+Si queremos extraer la letra almacenada en la fila 1 y columna 3 de la segunda capa de `miarray` usamos el siguiente código.
+
+`miarray[1, 3, 2]  # El orden es importante`
+
+```
+## [1] "s"
+```
+
+Si queremos extraer la segunda capa completa usamos el siguiente código.
+
+`miarray[,, 2]  # No se coloca nada en las primeras posiciones`
+
+```
+##      [,1] [,2] [,3] [,4]
+## [1,] "m"  "p"  "s"  "v" 
+## [2,] "n"  "q"  "t"  "w" 
+## [3,] "o"  "r"  "u"  "x"
+```
+
+Si queremos extraer la tercera columna de todas las capas usamos el siguiente código.
+
+`miarray[, 3,]  # No se coloca nada en las primeras posiciones`
+
+```
+##      [,1] [,2]
+## [1,] "g"  "s" 
+## [2,] "h"  "t" 
+## [3,] "i"  "u"
+```
+
+
 ### Data frames
 
 Los data frames son colecciones de elementos de cualquier tipo, es decir, números, caracteres, valores lógicos, vectores, matrices e incluso otros marcos de datos. 
