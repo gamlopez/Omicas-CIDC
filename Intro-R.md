@@ -245,6 +245,9 @@ num_vector1
 
 NOTA. Las operaciones aritméticas también pueden aplicarse sobre matrices. [See More](http://www.philender.com/courses/multivariate/notes/matr.html)
 
+### Arreglos
+
+
 Un arreglo es una matriz de varias dimensiones con información numérica, alfanumérica o lógica. Para construir una arreglo se usa la función `array( )`. Por ejemplo, para crear un arreglo de 3×4×2 con las primeras 24 letras minúsculas del alfabeto se escribe el siguiente código.
 
 `miarray <- array(data=letters[1:24], dim=c(3, 4, 2))`
