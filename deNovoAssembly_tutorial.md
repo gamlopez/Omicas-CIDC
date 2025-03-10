@@ -12,11 +12,11 @@ gamaliel.lopez@docentes.uaem.edu.mx
 
 Crea en tu directorio `home` tres subdirectorios llamados `Reads`, `Genomes` y `Scripts`. 
 
- `home/Reads`: Contiene las lecturas crudas en formato fastq (archivos .fastq) que se usarán en eltaller para ensamblar genomas virales.
+ `home/Reads`: Contiene las lecturas crudas en formato fastq (archivos .fastq) que se usarán en el curso.
 
- `home/Genomes`: Contiene algunos genomas de fagos y hospederos en formato fasta (archivos .fna).
+ `home/Genomes`: Contiene algunos genomas que usaremos mas adelante.
 
- `/home/Scripts`:Contiene algunos programas caseros escritos en perl (archivos .pl) que nosayudará a manejar los archivos durante el taller.
+ `/home/Scripts`:Contiene algunos programas caseros escritos en perl que les pueda proporcionar.
 
 
 
