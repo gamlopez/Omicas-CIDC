@@ -149,7 +149,7 @@ cond_vector
 ```
 
 ​					
-Para acceder a un vector en cualquier posición puedes utilizar el siguiente comando: 
+Para acceder a un vector en cualquier posición se utilizan los []. Puedes utilizar el siguiente comando: 
 
 `nombre_vector[posición]`
 
