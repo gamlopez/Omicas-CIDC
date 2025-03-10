@@ -50,7 +50,7 @@ rm(nombre-objeto1,nombre-objeto2, ..., nombre-objeto-n)
 
 El tipo de datos más simple en R son los vectores, son una colección de elementos, todos ellos del mismo tipo. 
 
-Vectores numéricos: Vectores compuestos por números. Con este tipo de vectores se pueden realizar cálculos aritméticos
+Vectores numéricos: Vectores compuestos por números. Con este tipo de vectores se pueden realizar cálculos aritméticos. La función de R para crear un vector es c() y que significa concatenar; dentro de los paréntesis de esta función se ubica la información a almacenar.
 
 ```
 vector_numerico <- c(38, 66, 12, 105, 2, 17)
