@@ -1,4 +1,4 @@
-# de Novo Assembly tutorial
+# *de Novo* Assembly tutorial
 
 #### Gamaliel López-Leal
 
