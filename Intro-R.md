@@ -56,7 +56,7 @@ Vectores numéricos: Vectores compuestos por números. Con este tipo de vectores
 vector_numerico <- c(38, 66, 12, 105, 2, 17)
 ```
 
-También puedes crear vectores numéricos generando secuencias o repeticiones.	Esto lo puedes hacer con la funcion `seq`		
+También puedes crear vectores numéricos generando secuencias o repeticiones.	Esto lo puedes hacer con la funcion `seq`		ó `rep`
 
 ```
 #Generar una secuencia regular en orden ascendente de 1 a 30 incrementando en 2
