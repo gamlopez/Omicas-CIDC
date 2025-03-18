@@ -76,6 +76,14 @@ metaviralspades.py --only-assembler  -k 21,33,55,77,99,127 -1 Reads-R1-v3_val_1.
 
 Ahora en el subdirectorio `MetaViral_results` se encuentran los resultados del ensamble. Revisemos el archivo **contigs.fasta**, que es el contiene los genomas virales.
 
+
+
+
+### Práctica
+
+> Ahora hagan un ensamble de novo usando las lecturas EC_R1.fq  y  EC_R2.fq. Recuerden hacer el trimming antes de ensamblar.
+
+
 Es importante saber que existen varias herramientas para revisar la estadística general de los ensambles. Para esto, usaremos una herramienta llamada `quast`. Para mayor información consultar el siguiente enlace:  https://github.com/ablab/quast
 
 ```
