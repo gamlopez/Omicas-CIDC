@@ -22,6 +22,9 @@ Crea en tu directorio `home` tres subdirectorios llamados `Reads`, `Genomes` y `
 
 En nuestro directorio de Reads, vamos a encontrar las lecturas crudas producto de la secuenciación. Antes de proceder a realizar el ensamblado de los genomas, es necesario evaluar la calidad de las lecturas y eliminar las lecturas o nucleótidos de baja calidad. Para esto, usaremos las herramientas de FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) y TrimGalore (https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md).
 
+
+Para comenzar primero crea ligas simbólicas de las lecturas que se encuentran en: /home/gama/Omicas/Reads
+
 Podemos verificar cuantas lecturas (contar cuantas lecturas hay en cada archivo) tenemos por archivo (R1 y R2) usando el comando `grep` con el flag `-c`. Para esto tenemos que buscar un patro único para cada lectura.
 
 ```
