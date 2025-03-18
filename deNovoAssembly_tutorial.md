@@ -79,8 +79,7 @@ Es importante saber que existen varias herramientas para revisar la estadística
 quast.py contigs.fasta -o quast_results
 ```
 
-
-
+Para mayor información de los archivo de salida de Quast puedes visitar: https://hoytpr.github.io/bioinformatics-semester/materials/genomics-assembly-reporting/
 
 
 
