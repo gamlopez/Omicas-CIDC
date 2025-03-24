@@ -99,6 +99,35 @@ Para mayor información de los archivo de salida de Quast puedes visitar: https:
 
 
 
+### Anotación Funcional
+
+
+
+Para hacer la anotación funcional usaremos pharokka y prokka. Como cualquier otro programa, con el flag `--help` puedes consultar el menú.
+
+Para correr pharokka, debe seguir las siguientes instrucciones (dependen del servidor, no siempre se necesita)
+
+```
+cd $HOME
+cp .bashrc.conda .bashrc
+# presione la tecla "y" seguida de enter
+# salir y volver a iniciar sesión
+```
+
+Luego correr `pharokka` (este si es el comando de siempre) ATENCION. Este programa demora en correr al menos 5-6min
+
+```
+conda activate pharokka_env 
+```
+
+Para correr pharokka usa la línea de comando
+
+```
+pharokka.py -i final_viral_contigs.fasta -o annotation_out
+```
+
+
+
 
 
 
