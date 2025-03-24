@@ -99,7 +99,7 @@ Para mayor información de los archivo de salida de Quast puedes visitar: https:
 
 
 
-### Anotación Funcional
+# Anotación Funcional
 
 
 
