@@ -84,6 +84,11 @@ Ahora en el subdirectorio `MetaViral_results` se encuentran los resultados del e
 > Ahora hagan un ensamble de novo usando las lecturas EC_R1.fq  y  EC_R2.fq. Recuerden hacer el trimming antes de ensamblar.
 
 
+
+Pero esta vez utiliza el programa `spades.phy` agrega las opciones de -k 21,33,55,77 `--careful` `--only-assembler`. De acuerdo con las recomendaciones de los autores de spades usa los kmeros: `-k 21,33,55,77`
+
+
+
 Es importante saber que existen varias herramientas para revisar la estadística general de los ensambles. Para esto, usaremos una herramienta llamada `quast`. Para mayor información consultar el siguiente enlace:  https://github.com/ablab/quast
 
 ```
