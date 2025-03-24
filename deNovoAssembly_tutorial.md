@@ -126,6 +126,8 @@ Para correr pharokka usa la línea de comando
 pharokka.py -i final_viral_contigs.fasta -o annotation_out
 ```
 
+Ahora desactiva pharokka con el comando `conda deactivate` y activa el ambiente de prokka
+
 ```
 conda activate prokka-env
 ```
