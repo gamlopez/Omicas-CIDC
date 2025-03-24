@@ -126,6 +126,15 @@ Para correr pharokka usa la línea de comando
 pharokka.py -i final_viral_contigs.fasta -o annotation_out
 ```
 
+```
+conda activate prokka-env
+```
+
+```
+prokka --kingdom Bacteria --outdir prokka_results contigs.fasta
+```
+
+
 
 
 
