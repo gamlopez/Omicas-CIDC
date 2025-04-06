@@ -89,6 +89,9 @@ ylab("No. of genes")+ theme_bw(base_size = 16) +  theme(legend.justification=c(1
 ggsave(filename="unique_vs_new_genes.png", scale=1)
 ```
 
+More info in: https://github.com/sanger-pathogens/Roary/blob/master/bin/create_pan_genome_plots.R
+
+
 Now with the presence and absence of genes file
 ```
 install.packages(c("pheatmap", "tidyverse"))
