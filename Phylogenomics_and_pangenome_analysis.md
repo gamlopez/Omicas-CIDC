@@ -42,6 +42,11 @@ There are many interesting files in the roary output, for example. The accessory
 dot -Tpng accessory_graph.dot -o accessory_graph.png
 ```
 
+The same applies to the core_accessory_graph.dot file.
+
+```
+dot -Tpng core_accessory_graph.dot -o core_graph.png
+```
 
 
 If you want to use the gene presence-absence matrix to creat multiple files based on the HG information. First, you need to create a files using the information in the presence-absence matrix file and adding a unique tag in the first column. The file should be like this:
