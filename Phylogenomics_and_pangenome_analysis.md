@@ -89,11 +89,25 @@ ylab("No. of genes")+ theme_bw(base_size = 16) +  theme(legend.justification=c(1
 ggsave(filename="unique_vs_new_genes.png", scale=1)
 ```
 
+Now with the presence and absence of genes file
+```
+install.packages(c("pheatmap", "tidyverse"))
 
+library(pheatmap)
+library(tidyverse)
 
+rtab <- read.delim("gene_presence_absence.Rtab", check.names = FALSE)
 
+mat <- as.matrix(rtab)
 
+pheatmap(mat,
+         color = colorRampPalette(c("white", "darkgreen"))(100),
+         cluster_rows = TRUE,
+         cluster_cols = TRUE,
+         show_rownames = FALSE,
+         main = "Presencia/Ausencia de Genes")
 
+```
 
 
 
