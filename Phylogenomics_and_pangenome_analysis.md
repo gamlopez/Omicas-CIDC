@@ -112,6 +112,42 @@ pheatmap(mat,
 
 ```
 
+### ML-Phylogeny (using iQtree)
+
+If you want to run iQtree to select the best model and construct the phylogeny. This comand lines could help
+
+
+
+You first need to build a multiple alignment
+
+```
+muscle -in SelectedProteins.fasta  -fastaout alnProts.fasta
+```
+
+Then run iQtree using multiple alignments
+
+```
+iqtree -s alnProts.fasta -m TEST -alrt 1000 -st AA > modeltest.txt
+
+
+iqtree -s alnProts.fasta -m MODEL -alrt 1000 -nt AUTO -redo # if you want to use -alrt
+
+iqtree -s alnProts.fasta -m MODEL -bb 1000 -redo #if you want to use bootstrap ultrafast
+
+```
+
+
+
+Tips:
+
+| Opción    | ¿Busca modelo? | ¿Construye árbol? | Equivalente a               |
+| --------- | -------------- | ----------------- | --------------------------- |
+| `-m MF`   | ✅ Sí           | ❌ No              | Solo ModelFinder            |
+| `-m TEST` | ✅ Sí           | ✅ Sí              | jModelTest/ProtTest         |
+| `-m MFP`  | ✅ Sí           | ✅ Sí              | ModelFinder con particiones |
+
+
+
 
 
 
