@@ -2,7 +2,7 @@
 
 Written by Gamaliel López-Leal
 
-gamaliel.lopez@uaem.edu.com
+gamaliel.lopez@docentes.uaem.edu.com
 
 ```
  library ("topGO")
