@@ -8,6 +8,8 @@ gamaliel.lopez@docentes.uaem.edu.mx
 
 Ahora usaremos Kraken para clasificar nuestros reads. Cuando usas Karken, debes de formatear la o las bases de datos de interes. Para esta páctica usaremos la  miniKraken de 4GB que se encuentra en: <u>/home/krakenDB/minikraken_20171013_4GB/</u>. Para mayor información consulta: https://ccb.jhu.edu/software/kraken/MANUAL.html
 
+Las lecturas que usaremos estan en: /home/gama/Omicas/Metagenomica
+
 Corramos Kraken usando un archivo fastq
 
 ```
