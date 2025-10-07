@@ -6,6 +6,24 @@
 
 *<u>Mail: gamaliel.lopez@docentes.uaem.edu.mx</u>*
 
+Before proceeding with the annotation and identification of homologous groups, we must review the quality of the assemblies. For this, we will use the `checkM` tool:
+
+```
+conda activate checkm_genome
+
+checkm taxonomy_wf genus Enterobacter  /home/path/genomes/ CheckM-Results-taxonomy_wf
+```
+
+Check the **bin_stats_ext.tsv** and **bin_stats.analyze.tsv** files.
+
+CheckM also has the lineage workflow to establish the procedure for your bins::
+
+```
+checkm lineage_wf /home/path/genomes/ CheckM-Results-lineage_wf
+```
+
+Check the **lineage.ms** file 
+
 
 
 ### Get homologous groups and usnig SGF approach
