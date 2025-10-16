@@ -117,7 +117,7 @@ install.packages(c("pheatmap", "tidyverse"))
 library(pheatmap)
 library(tidyverse)
 
-rtab <- read.delim("gene_presence_absence.Rtab", check.names = FALSE)
+rtab = read.delim('gene_presence_absence.Rtab', row.names = 1, header=TRUE)
 
 mat <- as.matrix(rtab)
 
