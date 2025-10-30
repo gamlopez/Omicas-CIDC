@@ -107,7 +107,7 @@ perl formatGFF.pl PROKKA.gff > new-formatted_prokka.gff
 run `htseq-count`
 
 ```
-/usr/local/bin/htseq-count -m union -a 2 -s no --idattr=gene_id aln-28a-SORTED.sam new-formatted_prokka.gff -o COUNTS > Counts-28a.txt
+htseq-count -m union -a 2 -s no --idattr=gene_id aln-28a-SORTED.sam new-formatted_prokka.gff -o COUNTS > Counts-28a.txt
 ```
 
 
