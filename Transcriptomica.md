@@ -224,6 +224,13 @@ Load the library
 
 ```
  library("NOISeq")
+
+# or this way:
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("NOISeq")
+library("NOISeq")
+
 ```
 
 Read the gene expression table
