@@ -192,6 +192,12 @@ An important aspect when analyzing the RNA-Seq data lies in knowing the dispersi
 ```
 rld <- rlogTransformation(dds)
 plotPCA(rld, intgroup = "condition")
+
+#save as a pdf file
+pdf ("PCA_plot.pdf")
+plotPCA(rld, intgroup = "condition")
+dev.off()
+
 ```
 
 
