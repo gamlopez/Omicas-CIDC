@@ -7,6 +7,13 @@ gamaliel.lopez@docentes.uaem.edu.com
 ```
  library ("topGO")
  library ("Rgraphviz")
+
+# or this way:
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("topGO")
+library("topGO")
+
 ```
 
 Read your gene background or GO universe
