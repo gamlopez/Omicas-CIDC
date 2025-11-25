@@ -84,7 +84,7 @@ metaphlan2.py R2.fastq --input_type fastq > metaphlan2_profile2.txt
 Pra concatenar varias muestras debes usar el script `merge_metaphlan_tables.py`
 
 ```
-merge_metaphlan_tables.py metaphlan2_profile*.txt > merged_abundance_table.txt
+merge_metaphlan_tables.py metaphlan2_profile1.txt metaphlan2_profile2.txt metaphlan2_profile1.1.txt > merged_abundance_table.txt
 ```
 
 Para obtener el reporte del número de lecturas clasificadas
