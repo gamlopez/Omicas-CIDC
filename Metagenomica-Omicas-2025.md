@@ -85,6 +85,10 @@ Pra concatenar varias muestras debes usar el script `merge_metaphlan_tables.py`
 
 ```
 merge_metaphlan_tables.py metaphlan2_profile1.txt metaphlan2_profile2.txt metaphlan2_profile1.1.txt > merged_abundance_table.txt
+
+#o de esta manera:
+
+paste metaphlan2_profile1.txt <(awk '{print $2}' metaphlan2_profile2.txt)
 ```
 
 Para obtener el reporte del número de lecturas clasificadas
