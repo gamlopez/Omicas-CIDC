@@ -37,7 +37,7 @@ prokka infile.fna --kingdom Bacteria --outdir $file.dir --locustag $file
 If you want to run prokka in a single process. I have written a script that calls all the fna files and runs prokka for each of the files.
 
 ```
-nohup perl Running_PROKKA_toMultipleGenomes.pl &
+nohup perl Running-PROKKA_toMultipleGenomes.pl &
 ```
 
 Then you need to collect all .gff files
