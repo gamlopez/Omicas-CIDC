@@ -121,12 +121,103 @@ rtab = read.delim('gene_presence_absence.Rtab', row.names = 1, header=TRUE)
 
 mat <- as.matrix(rtab)
 
+#Heatmap
 pheatmap(mat,
          color = colorRampPalette(c("white", "darkgreen"))(100),
          cluster_rows = TRUE,
          cluster_cols = TRUE,
          show_rownames = FALSE,
          main = "Presencia/Ausencia de Genes")
+
+#Histograma
+n_genomas <- ncol(mat)
+frecuencia <- rowSums(mat)
+proporcion <- frecuencia / n_genomas
+
+datos_frecuencia <- tibble(
+  Genomas = seq_len(n_genomas),
+  Familias = tabulate(frecuencia, nbins = n_genomas)
+)
+
+ggplot(datos_frecuencia, aes(Genomas, Familias)) +
+  geom_col(fill = "#287C8E") +
+  labs(
+    x = "Número de genomas",
+    y = "Número de grupos de homólogos",
+    title = "Distribución de frecuencias del pangenoma"
+  ) +
+  theme_classic(base_size = 13)
+
+#Barplot
+categorias <- c("Core", "Soft core", "Shell", "Cloud")
+
+clase <- case_when(
+  proporcion >= 0.99 ~ "Core",
+  proporcion >= 0.95 ~ "Soft core",
+  proporcion >= 0.15 ~ "Shell",
+  TRUE ~ "Cloud"
+)
+
+composicion <- tibble(
+  Categoria = factor(clase, levels = categorias)
+) |>
+  count(Categoria, .drop = FALSE) |>
+  mutate(Porcentaje = 100 * n / sum(n))
+
+ggplot(composicion, aes(Categoria, n, fill = Categoria)) +
+  geom_col(width = 0.7) +
+  geom_text(
+    aes(label = sprintf("%s (%.1f%%)", n, Porcentaje)),
+    vjust = -0.4,
+    size = 3.5
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  scale_fill_manual(
+    values = c("#287C8E", "#65B89A", "#E9BC58", "#D97862")
+  ) +
+  labs(x = NULL, y = "Número de familias génicas") +
+  theme_classic(base_size = 13) +
+  theme(legend.position = "none")
+
+#PCoA panmatrix
+
+# install.packages(c("vegan", "ape"))
+
+library(vegan)
+
+dist_jaccard <- vegdist(
+  t(mat),
+  method = "jaccard",
+  binary = TRUE
+)
+
+# Corrección para posibles valores propios negativos
+ordenacion <- ape::pcoa(
+  dist_jaccard,
+  correction = "lingoes"
+)
+
+coordenadas <- ordenacion$vectors.cor
+if (is.null(coordenadas)) {
+  coordenadas <- ordenacion$vectors
+}
+
+datos_pcoa <- tibble(
+  Genoma = rownames(coordenadas),
+  PCoA1 = coordenadas[, 1],
+  PCoA2 = coordenadas[, 2]
+)
+
+ggplot(datos_pcoa, aes(PCoA1, PCoA2)) +
+  geom_point(size = 3, color = "#287C8E") +
+  geom_text(aes(label = Genoma), vjust = -0.7, size = 3) +
+  labs(
+    title = "Similitud del contenido génico",
+    subtitle = "Distancia de Jaccard",
+    x = "PCoA 1",
+    y = "PCoA 2"
+  ) +
+  theme_classic(base_size = 13)
 
 ```
 
