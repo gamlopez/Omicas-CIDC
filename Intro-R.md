@@ -340,7 +340,7 @@ install.packages("ggplot2")
 Una vez intalada o instaladas distintas paqueterias estas debe de ser cargadas usaldo el comando `library`
 
 ```
-library (ggplot2)
+library ("ggplot2")
 ```
 
 ### Cargar los datos de ejemplo
