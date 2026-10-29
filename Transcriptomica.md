@@ -50,6 +50,30 @@ The file  outFile.sam contains only the mapped reads because we used the option 
 
 You can use the `grep -c` option to count the mapped reads or converter the sam file in a .bam  file (binary) to count the mapped using the -F 0x04 or -F 4 flag
 
+The first part (rows starting with the character **@**) is the header:
+
+| Symbol                                |                                      |                                          |
+| ------------------------------------- | ------------------------------------ | ---------------------------------------- |
+| **@HD** header line                   | **VN:1.0** version of the SAM format | **SO:unsorted** sorting order            |
+| **@SQ** reference sequence dictionary | **SN:chr21** sequence name           | **LN:46709983** sequence length          |
+| **@PG** program used                  | **ID:Bowtie** **VN:1.2.3** version   | **CL:”/usr/local/bin/bowtie-align-s –wrapper basic-0 -S genome H3K4me1_chr21.fq.gz H3K4me1.sam”** command line |
+
+The rest is a read alignment.
+
+| Field                                    | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| Query name                               | D00733:297:CBT52ANXX:6:2204:16979:89185  |
+| FLAG                                     | 0 *                                      |
+| Reference name                           | chr21                                    |
+| Leftmost mapping position (1-based)      | 5010030                                  |
+| Mapping quality                          | 255 **range from 0 to 255**              |
+| CIGAR string                             | 50M *                                    |
+| Reference sequence name of the primary alignment of the mate | = *same chromosome*                      |
+| Position of the primary alignment of the mate | 0                                        |
+| observed fragment length                 | 0                                        |
+| Sequence                                 | TGGGATTACAGGTGTTAGCCACCACGTCCAGCTGTTAATTTTTATTTAAT |
+| Quality                                  | AAB@@1FC1DGGFEGGGGGGGGGE>FGGFDGGGGGEEDGGCGGGFGGGGF |
+
 ```
 samtools view -bSo MappedReads.bam MappedReads.sam
 samtools sort MappedReads.bam -o MappedReads_SORTED.bam
