@@ -596,6 +596,18 @@ Using the melting strategy you could also obtain a correlation plot, using the c
     
     ggplot(cor_melted, aes(x=Treatment1, y= Treatment2, fill= Correlation)) + geom_tile()
 
+    ##para guardar en un archivo la figura en formato tiff
+
+    ggsave("plot.tiff", dpi = 600)
+    ggplot(cor_melted, aes(x=Treatment1, y= Treatment2, fill= Correlation)) + geom_tile()
+    dev.off()
+
+    ##para guardar en un archivo la figura en pdf
+
+    pdf ("plot.pdf", dpi = 600)
+    ggplot(cor_melted, aes(x=Treatment1, y= Treatment2, fill= Correlation)) + geom_tile()
+    dev.off()
+
 Besides, corrplot (v.0.84) is another package that could be used to plot the correlation matrix without need to melt it.
 
  corrplot(cor_all)
