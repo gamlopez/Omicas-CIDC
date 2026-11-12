@@ -107,25 +107,179 @@ NOTA: Finalmente, la tabla de abundancias "merged_abundance_table.txt" se puede 
 
 
 
+### Análisis de diversidad con `phyloseq` y `vegan`
+
+phyloseq: https://joey711.github.io/phyloseq/index.html
+vegan: https://peat-clark.github.io/BIO381/veganTutorial.html
+
 ```
   if(!requireNamespace("BiocManager")){
     install.packages("BiocManager")
   }
   BiocManager::install("phyloseq")
   
-  library (phyloseq)
+library (phyloseq)
+library(phyloseq)
+library(vegan)
+library(ggplot2)
   
+#version 1  
+Class_Abundance <- read.csv("AbundanceTable.txt", header=T, row.names=1, sep="\t")
+OTU = otu_table(Class_Abundance, taxa_are_rows = TRUE)
+taxmat = matrix(row.names(Class_Abundance))
+TAX = taxa_names(taxmat)
+physeq = phyloseq(OTU, TAX)
+plot_richness(physeq, measures = c("Observed", "Chao1", "Shannon", "simpson"))
+
+#version 2
+Order_Abundance <- read.delim(
+  "AbundanceTable.txt",
+  header = TRUE,
+  row.names = 1
+)
+
+counts <- as.matrix(Order_Abundance)
+OTU <- otu_table(counts, taxa_are_rows = TRUE)
+
+taxmat <- matrix(
+  rownames(counts),
+  ncol = 1,
+  dimnames = list(rownames(counts), "Order")
+)
+TAX <- tax_table(taxmat)
+
+physeq <- phyloseq(OTU, TAX)
+
+# Composición por muestra en número de lecturas
+plot_bar(physeq, fill = "Order")
+
+#Abundancia relativa
+physeq_rel <- transform_sample_counts(
+  physeq,
+  function(x) 100 * x / sum(x)
+)
+
+plot_bar(physeq_rel, x = "Sample", fill = "Order") +
+  ggplot2::labs(
+    x = "Muestra",
+    y = "Abundancia relativa (%)",
+    fill = "Orden bacteriano"
+  )
+
+# Diversidad alfa a nivel de orden
+plot_richness(
+  physeq,
+  measures = c("Observed", "Shannon", "Simpson")
+)
+
+# Diversidad beta entre muestras
+bray <- vegdist(decostand(comunidad, "total"), method = "bray")
+jaccard <- vegdist(comunidad, method = "jaccard", binary = TRUE)
+
+round(as.matrix(bray), 3)
+round(as.matrix(jaccard), 3)
+
+# Riqueza gamma global y riqueza acumulada por ambiente
+sum(colSums(comunidad) > 0)
+specnumber(comunidad, groups = meta$Ambiente)
+
+#plot para beta diversidad
+
+beta <- rbind(
+  transform(as.data.frame(as.table(as.matrix(bray))),
+            Indice = "Bray–Curtis"),
+  transform(as.data.frame(as.table(as.matrix(jaccard))),
+            Indice = "Jaccard")
+)
+
+ggplot(beta, aes(x = Var2, y = Var1, fill = Freq)) +
+  geom_tile(color = "white") +
+  facet_wrap(~ Indice) +
+  scale_fill_gradient(
+    low = "#F0F7FC", high = "#084594", limits = c(0, 1)
+  ) +
+  scale_y_discrete(limits = rev(rownames(comunidad))) +
+  coord_equal() +
+  labs(x = NULL, y = NULL, fill = "Disimilitud") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
   
-  > library (phyloseq)
-  > Class_Abundance <- read.csv("AbundanceTable.txt", header=T, row.names=1, sep="\t")
-  > OTU = otu_table(Class_Abundance, taxa_are_rows = TRUE)
-  > taxmat = matrix(row.names(Class_Abundance))
-  > TAX = taxa_names(taxmat)
-  > physeq = phyloseq(OTU, TAX)
-  > plot_richness(physeq, measures = c("Observed", "Chao1", "Shannon", "simpson"))
+#plot distancias beta diversidad
+
+distancias <- list(
+  "Bray–Curtis" = bray,
+  "Jaccard binario" = jaccard
+)
+
+coordenadas <- do.call(rbind, lapply(names(distancias), function(indice) {
+  ajuste <- cmdscale(distancias[[indice]], k = 2, add = TRUE)
+  puntos <- ajuste$points
+  ids <- rownames(puntos)
+
+  data.frame(
+    Muestra = ids,
+    Ambiente = meta[ids, "Ambiente"],
+    PCoA1 = puntos[, 1],
+    PCoA2 = puntos[, 2],
+    Indice = indice,
+    row.names = NULL
+  )
+}))
+
+coordenadas$Indice <- factor(coordenadas$Indice, levels = names(distancias))
+
+ggplot(coordenadas, aes(PCoA1, PCoA2, color = Ambiente)) +
+  geom_point(size = 3) +
+  geom_text(aes(label = Muestra), vjust = -0.9, size = 3,
+            show.legend = FALSE) +
+  facet_wrap(~ Indice) +
+  coord_equal() +
+  scale_color_manual(values = c(
+    Sedimento = "#8C510A",
+    Suelo = "#4D9221",
+    Agua = "#2166AC"
+  )) +
+  scale_y_continuous(expand = expansion(mult = c(0.1, 0.2))) +
+  labs(x = "Eje PCoA 1", y = "Eje PCoA 2", color = "Ambiente") +
+  theme_minimal()
+  
+
+#plot para gamma diversidad
+
+gamma_ambiente <- specnumber(comunidad, groups = meta$Ambiente)
+
+gamma <- data.frame(
+  Grupo = c(names(gamma_ambiente), "Global"),
+  Ordenes = c(unname(gamma_ambiente), sum(colSums(comunidad) > 0))
+)
+
+gamma$Grupo <- factor(
+  gamma$Grupo, levels = c("Sedimento", "Suelo", "Agua", "Global")
+)
+
+ggplot(gamma, aes(x = Grupo, y = Ordenes, fill = Grupo)) +
+  geom_col(width = 0.65, show.legend = FALSE) +
+  geom_text(aes(label = Ordenes), vjust = -0.4) +
+  scale_fill_manual(values = c(
+    Sedimento = "#8C510A", Suelo = "#4D9221",
+    Agua = "#2166AC", Global = "#636363"
+  )) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.12))) +
+  labs(x = NULL, y = "Número de órdenes observados") +
+  theme_minimal()
+
+#¿cuántos órdenes distintos se observaron al reunir las nueve muestras?
+sum(colSums(comunidad) > 0)
+
+
+
+
 ```
 
-​			
+​ 
+
+
+		
 
 
 
