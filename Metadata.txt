@@ -1,0 +1,10 @@
+SampleID	Ambiente	Replica
+SED01	Sedimento	1
+SED02	Sedimento	2
+SED03	Sedimento	3
+SUE01	Suelo	1
+SUE02	Suelo	2
+SUE03	Suelo	3
+AGU01	Agua	1
+AGU02	Agua	2
+AGU03	Agua	3
