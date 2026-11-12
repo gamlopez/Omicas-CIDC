@@ -173,6 +173,22 @@ plot_richness(
 )
 
 # Diversidad beta entre muestras
+conteos <- read.delim("AbundanceTable.txt", row.names = 1)
+meta <- read.delim("Metadata.txt", row.names = 1)
+comunidad <- t(as.matrix(conteos))
+stopifnot(setequal(rownames(comunidad), rownames(meta)))
+meta <- meta[rownames(comunidad), , drop = FALSE]
+profundidad <- min(rowSums(comunidad))
+paleta <- c(Sedimento = "#8C510A", Suelo = "#4D9221", Agua = "#2166AC")
+
+rarecurve(
+  comunidad, step = 10, sample = profundidad,
+  col = unname(paleta[meta$Ambiente]), label = TRUE,
+  xlab = "Número de lecturas",
+  ylab = "Número esperado de órdenes"
+)
+legend("bottomright", legend = names(paleta), col = paleta, lty = 1, bty = "n")
+
 bray <- vegdist(decostand(comunidad, "total"), method = "bray")
 jaccard <- vegdist(comunidad, method = "jaccard", binary = TRUE)
 
